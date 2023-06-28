@@ -1,0 +1,29 @@
+#define function getValue1() view returns (uint256)
+#define function getValue2() view returns (uint256)
+
+#define macro MAIN() = takes(0) returns(0) {
+    0x00 calldataload
+    0xf8 shr
+    dup1
+    0x01 eq getValue1 jumpi
+    0x02 eq getValue2 jumpi
+    revert
+
+    getValue1:
+        GET_VALUE1()
+
+    getValue2:
+        GET_VALUE2()
+}
+
+#define macro GET_VALUE1() = takes(0) returns(0) {
+    0x2a
+    0x00 mstore
+    0x20 0x00 return
+}
+
+#define macro GET_VALUE2() = takes(0) returns(0) {
+    0x0eccec
+    0x00 mstore
+    0x20 0x00 return
+}
